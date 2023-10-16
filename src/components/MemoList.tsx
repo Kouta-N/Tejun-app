@@ -11,7 +11,7 @@ export default function MemoList() {
       <TouchableOpacity
         style={styles.memoListItem}
         onPress={() => {
-          navigation.navigate("MemoDetail");
+          navigation.navigate("ToDoList");
         }}
       >
         <View>

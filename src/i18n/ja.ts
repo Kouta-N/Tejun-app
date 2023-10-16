@@ -1,7 +1,7 @@
 import TextDefinition from "./type";
 
 const ja: TextDefinition = {
-  headerTitle: "Tejun",
+  headerTitle: "テジュン",
   drawer: {
     policy: "プライバシーポリシー",
     reviewRequest: "レビューにご協力ください",
