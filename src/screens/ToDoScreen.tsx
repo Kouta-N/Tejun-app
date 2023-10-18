@@ -1,27 +1,50 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, Dimensions } from "react-native";
 
-import CircleButton from "../components/CircleButton";
 import KeyboardSafeView from "../components/KeyBoardSafeView";
 import Button from "../components/Button";
+import { i18n } from "../i18n/i18n";
 
-const todo = ["起立", "例", "着席"];
+const { width } = Dimensions.get("window");
+let i = 0; // reduxに置き換える?
 
 export default function ToDoScreen(props) {
   const { navigation } = props;
+  const todoList = ["起立", "礼", "着席"];
+  const [todo, setToDo] = useState(todoList[0]);
+
+  console.log("⭐️", i);
+  console.log("🌞", todoList.length);
+
+  const onPressGo = () => {
+    if (todoList.length - 1 > i) {
+      i++;
+      return setToDo(todoList[i]); // stateに設定
+    } else if (todoList.length - 1 === i) {
+      return setToDo(i18n.t("finishTodo"));
+    }
+  };
+
+  const onPressBack = () => {
+    if (i !== 0) {
+      i--;
+      return setToDo(todoList[i]); // stateに設定
+    }
+  };
+
   return (
     <KeyboardSafeView style={styles.container}>
       <View style={styles.inputContainer}>
-        <Text style={styles.textBox}>{todo[0]}</Text>
+        <Text style={styles.toDoText}>{todo}</Text>
       </View>
-      {/* <CircleButton
-        name="check"
-        onPress={() => {
-          navigation.goBack();
-        }}
-      /> */}
-      <Button style={styles.button}>ボタン</Button>
+      <View style={styles.btnContainer}>
+        <View>
+          <Button onPress={onPressBack} label="戻る" />
+        </View>
+        <View style={styles.rightBtnContainer}>
+          <Button onPress={onPressGo} label="次へ" />
+        </View>
+      </View>
     </KeyboardSafeView>
   );
 }
@@ -33,38 +56,17 @@ const styles = StyleSheet.create({
   inputContainer: {
     paddingHorizontal: 27,
     paddingVertical: 32,
-    flex: 1,
+    backgroundColor: "white",
   },
-  input: {
-    flex: 1,
-    textAlignVertical: "top",
-    fontSize: 16,
-    lineHeight: 24,
+  btnContainer: {
+    paddingTop: 20,
+    justifyContent: "center",
+    flexDirection: "row",
   },
-  button: {
-    backgroundColor: "initial",
-    backgroundImage: "linear-gradient(-180deg, #00D775, #00BD68)",
-    borderRadius: 5,
-    // box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
-    // color: #FFFFFF;
-    // cursor: pointer;
-    // display: inline-block;
-    // font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
-    // height: 44px;
-    // line-height: 44px;
-    // outline: 0;
-    // overflow: hidden;
-    // padding: 0 20px;
-    // pointer-events: auto;
-    // position: relative;
-    // text-align: center;
-    // touch-action: manipulation;
-    // user-select: none;
-    // -webkit-user-select: none;
-    // vertical-align: top;
-    // white-space: nowrap;
-    // width: 100%;
-    // z-index: 9;
-    // border: 0;
+  rightBtnContainer: {
+    marginLeft: width / 4,
+  },
+  toDoText: {
+    fontWeight: "bold",
   },
 });

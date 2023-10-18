@@ -6,6 +6,7 @@ type TextDefinition = {
     licenses: string;
   };
   placeholder: string;
+  finishTodo: string;
 };
 
 export default TextDefinition;
