@@ -1,41 +1,47 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "../redux/modules/counterIndex";
 
 import KeyboardSafeView from "../components/KeyBoardSafeView";
 import Button from "../components/Button";
 import { i18n } from "../i18n/i18n";
 
 const { width } = Dimensions.get("window");
-let i = 0; // reduxに置き換える?
 
 export default function ToDoScreen(props) {
   const { navigation } = props;
-  const todoList = ["起立", "礼", "着席"];
+  const index = useSelector((state: any) => state.index.value);
+  const dispatch = useDispatch();
+  const todoList = ["起立", "礼", "着席"]; // apiから取得するようにする
   const [todo, setToDo] = useState(todoList[0]);
 
-  console.log("⭐️", i);
-  console.log("🌞", todoList.length);
-
   const onPressGo = () => {
-    if (todoList.length - 1 > i) {
-      i++;
-      return setToDo(todoList[i]); // stateに設定
-    } else if (todoList.length - 1 === i) {
+    if (todoList.length > index) {
+      dispatch(increment());
+    }
+    if (todoList.length === index) {
       return setToDo(i18n.t("finishTodo"));
     }
+    return setToDo(todoList[index]);
   };
 
   const onPressBack = () => {
-    if (i !== 0) {
-      i--;
-      return setToDo(todoList[i]); // stateに設定
+    if (index !== 0) {
+      dispatch(decrement());
+      return setToDo(todoList[index]);
     }
   };
 
   return (
     <KeyboardSafeView style={styles.container}>
       <View style={styles.inputContainer}>
-        <Text style={styles.toDoText}>{todo}</Text>
+        {todoList.length !== index && (
+          <Text style={styles.toDoText}>{todo}</Text>
+        )}
+        {todoList.length === index && (
+          <Text style={styles.toDoFinalText}>{todo}</Text>
+        )}
       </View>
       <View style={styles.btnContainer}>
         <View>
@@ -68,5 +74,11 @@ const styles = StyleSheet.create({
   },
   toDoText: {
     fontWeight: "bold",
+    textAlign: "center",
+    color: "black",
+  },
+  toDoFinalText: {
+    fontWeight: "bold",
+    color: "red",
   },
 });
