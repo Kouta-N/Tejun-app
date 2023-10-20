@@ -14,7 +14,8 @@ import SignUpScreen from "./src/screens/SignUpScreen";
 import ToDoScreen from "./src/screens/ToDoScreen";
 import { i18n } from "./src/i18n/i18n";
 import store from "./src/redux/modules/store";
-import { Provider } from "react-redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
+import { resetIndex } from "./src/redux/modules/counterIndex";
 
 const Stack = createStackNavigator();
 

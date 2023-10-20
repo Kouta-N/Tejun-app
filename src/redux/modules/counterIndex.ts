@@ -1,3 +1,4 @@
+// ref: https://codesandbox.io/s/github/reduxjs/redux-essentials-counter-example/tree/master/?from-embed=&file=/src/App.js
 import { createSlice } from "@reduxjs/toolkit";
 
 export const counterIndex = createSlice({
@@ -12,10 +13,12 @@ export const counterIndex = createSlice({
     decrement: (state) => {
       state.value--;
     },
+    resetIndex: (state) => {
+      state.value = 0;
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement } = counterIndex.actions;
+export const { increment, decrement, resetIndex } = counterIndex.actions;
 
 export default counterIndex.reducer;
