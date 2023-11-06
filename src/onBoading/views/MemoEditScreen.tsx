@@ -2,8 +2,8 @@ import React from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import CircleButton from "../components/CircleButton";
-import KeyboardSafeView from "../components/KeyBoardSafeView";
+import CircleButton from "../../components/CircleButton";
+import KeyboardSafeView from "../../components/KeyBoardSafeView";
 
 export default function MemoEditScreen(props) {
   const { navigation } = props;

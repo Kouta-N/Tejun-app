@@ -1,8 +1,8 @@
 import React from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 
-import CircleButton from "../components/CircleButton";
-import KeyboardSafeView from "../components/KeyBoardSafeView";
+import CircleButton from "../../components/CircleButton";
+import KeyboardSafeView from "../../components/KeyBoardSafeView";
 
 export default function MemoCreateScreen(props) {
   const { navigation } = props;

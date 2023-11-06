@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 
-import CircleButton from "../components/CircleButton";
+import CircleButton from "../../components/CircleButton";
 import { shape } from "prop-types";
 
 export default function MemoListScreen(props) {
