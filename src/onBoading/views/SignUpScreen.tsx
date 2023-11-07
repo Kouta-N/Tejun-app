@@ -85,8 +85,9 @@ const styles = StyleSheet.create({
   paddingHorizontal: 27,
   paddingVertical: 24,
   marginTop: 10,
-  // backgroundColor: "#ffffff",
-  // opacity: 0.9,
+  backgroundColor: "#ffffff",
+  borderRadius: 20,
+  opacity: 0.9,
  },
  title: {
   fontSize: 24,
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
   flex: 1,
  },
  blackFilter: {
-  backgroundColor: "rgba(0,0,0,0.5)",
+  backgroundColor: "rgba(0,0,0,0.35)",
   width,
   height,
   position: "absolute",
