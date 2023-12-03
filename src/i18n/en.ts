@@ -9,6 +9,7 @@ const en: TextDefinition = {
   },
   placeholder: "Enter it and tap the button below to enlarge it on the screen.",
   finishTodo: "It's over. You did a good job.",
+  login: "login",
 };
 
 export default en;

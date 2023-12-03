@@ -7,6 +7,7 @@ type TextDefinition = {
   };
   placeholder: string;
   finishTodo: string;
+  login: string;
 };
 
 export default TextDefinition;

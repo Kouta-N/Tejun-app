@@ -17,12 +17,13 @@ import { i18n } from "./src/i18n/i18n";
 import store from "./src/redux/modules/store";
 import { Provider, useSelector, useDispatch } from "react-redux";
 import { resetIndex } from "./src/redux/modules/counterIndex";
+import { connect } from "react-redux";
 
 const Stack = createStackNavigator();
 
 export default function App() {
  const apolloClient = new ApolloClient({
-  uri: "http://localhost:8083/query/",
+  uri: "http://localhost:8082/query",
   cache: new InMemoryCache(),
  });
 
@@ -68,3 +69,14 @@ export default function App() {
   </ApolloProvider>
  );
 }
+
+// ここでactionsをpropsとして渡している
+// connect(
+//  (state) => ({ ...state }),
+//  (dispatch) => {
+//   const actions = bindActionCreators(dispatch);
+//   return {
+//    actions,
+//   };
+//  }
+// )(App);
